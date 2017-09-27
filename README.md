@@ -1,6 +1,8 @@
-## Simple Routes: A simple route matcher
+# Simple Routes: A simple route matcher
 
 Simple route matcher using minimatch.
+
+[![Build Status](https:/travis-ci.org/cdimouils/simple-routes.svg?branch=master)](http://travis-ci.org/cdimoulis/simple-routes);
 
 ### Installation
 
