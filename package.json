@@ -1,0 +1,30 @@
+{
+  "name": "simple-routes",
+  "version": "0.1.0",
+  "description": "A simple route matcher",
+  "keywords": [
+    "router",
+    "routes",
+    "simple"
+  ],
+  "license": "MIT",
+  "author": {
+    "name":"Christopher Dimoulis",
+    "email": "christopherjamesd@gmail.com",
+    "url": "http://chrisdimoulis.com"
+  },
+  "main": "src/router.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cdimoulis/simple-routes.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": ">= 6.11"
+  },
+  "dependencies": {
+    "minimatch": "^3.0.4"
+  }
+}
