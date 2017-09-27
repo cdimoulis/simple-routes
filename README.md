@@ -28,8 +28,10 @@ Action is a function callback. This function will be returned on a successful ma
 ```js
 let main_controller = require('./controllers/main');
 
-router.addRoute(['/index.html', main_controller.index]);
+// route, action
+router.addRoute('/index.html', main_controller.index);
 
+// [route,action], [route,action]
 router.addRoutes([
   ['/blog/articles/**', main_controller.articles],
   ['**', main_controller.default]
