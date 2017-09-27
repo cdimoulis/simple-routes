@@ -32,18 +32,12 @@ const Router = function(opts) {
   };
 
   // Adds multiple routes and actions.
-  // routes: (array of strings) list of routes to match
-  // actions: (array of functions) list of actions to call on match
-  // NOTE: There should be a one to one match of routes to actions. That is that
-  //  routes[i] will trigger actions[i].
-  this.addRoutes = (routes, actions) => {
-    if (routes && actions) {
-      if (routes.length != actions.length) {
-        throw `Router Error: Mismatch routes and actions\nroutes: ${routes}\naction: ${actions}`;
-      }
-
-      for (let i = 0; i < routes.length; i++) {
-        this.addRoute(routes[i], actions[i]);
+  // list: array of arrays. Each array is a pair of [route, action].
+  this.addRoutes = (list) => {
+    if (list) {
+      for (let i = 0; i < list.length; i++) {
+        let obj = list[i];
+        this.addRoute(obj[0], obj[1]);
       }
     }
     // Allow chaining of addRoutes
@@ -55,6 +49,23 @@ const Router = function(opts) {
   this.getAction = (route) => {
     let index = _findMatch(route);
     return _actions[index] || -1;
+  };
+
+  // Remove a route
+  // Returns the action or null if not found
+  this.removeRoute = (route) => {
+    let action, index = _routes.indexOf(route);
+    if (index != -1) {
+      _routes.splice(index, 1);
+      action = _actions.splice(index, 1);
+    }
+    return action;
+  };
+
+  // Clear all routes
+  this.clearAll = () => {
+    _routes = [];
+    _actions = [];
   }
 
   // If has route
@@ -75,6 +86,15 @@ const Router = function(opts) {
     return str;
   }
 
+  // Get all the routes
+  this.routes = () => {
+    return _routes;
+  }
+
+  // Get all the actions
+  this.actions = () => {
+    return _actions;
+  }
 
   /***
   * Private FUNCTIONS
