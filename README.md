@@ -2,7 +2,7 @@
 
 Simple route matcher using minimatch.
 
-[![Build Status](https:/travis-ci.org/cdimouils/simple-routes.svg?branch=master)](http://travis-ci.org/cdimoulis/simple-routes);
+[![Build Status](https://travis-ci.org/cdimoulis/simple-routes.svg?branch=master)](http://travis-ci.org/cdimoulis/simple-routes)
 
 ### Installation
 
