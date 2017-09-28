@@ -21,13 +21,13 @@ let Router = require('simple-routes');
 let router = new Router();
 ```
 
-**Add Routes**
+#### Add Routes
 
 Adding routes is simply a string representing a url to match and an action which is a function.
 
 The url string should follow the [minimatch](https://www.npmjs.com/package/minimatch) documentation for matching.
 
-Routes are added using an array like `['/url/route/**/to/match'], action]`
+Routes are added using an array like `['/url/route/*/to/match', action]`
 
 Action is a function callback. This function will be returned on a successful match
 
@@ -39,7 +39,7 @@ router.addRoute('/index.html', main_controller.index);
 
 // [route,action], [route,action]
 router.addRoutes([
-  ['/blog/articles/**', main_controller.articles],
+  ['/blog/articles/*', main_controller.articles],
   ['**', main_controller.default]
 ]);
 
@@ -48,13 +48,62 @@ router.hasRoute('/index.html'); // true
 let action = router.getAction('/blog/articles/cheese'); // returns main_controller.articles
 ```
 
+
+**NOTE:**
+
 The order in which routes are added is important. In the example above you see the route `**` which would match ANY AND ALL routes. However since it is added last the first two routes will be checked first for a match.
 
-**View Routes**
+#### View Routes
 
-View a neater layout of the routes.
+You can get an array of all the routes currently in the router:
+```js
+router.routes();
+```
+
+You can get an array of all the actions currently in the router:
+```js
+router.actions();
+```
+
+View a neater layout of the current routes in the router. If the function passed is a named function statement the function name will show. Otherwise the function will print.
+
 ```js
 router.toString();
+
+// ROUTE                ACTION              
+// /index.html          index                   
+// /blog/article/*      articles                   
+// **                   default      
+```
+
+Named function statements (as opposed to a function literal) will help with this table. If using a function constructor then using a named function will be helpful:
+```js
+Controller = new function() {
+
+  this.index = function index() {
+    ...
+  };
+
+  this.create = function() {
+
+  };
+};
+
+let main_controller = new Controller();
+main_controller.index.name; // index
+main_controller.create.name; // ''
+```
+
+#### Remove Routes
+
+You can remove an individual route:
+```js
+router.removeRoute('/blog/articles/**');
+```
+
+You can remove all routes:
+```js
+router.clearAll();
 ```
 
 

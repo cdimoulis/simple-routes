@@ -78,14 +78,21 @@ const Router = function(opts) {
   // Get a pretty listing of the routes
   this.toString = () => {
     let str = '';
-    let data = {};
+    let data = [];
     for (let i = 0; i < _routes.length; i++) {
       let route = _routes[i];
       let action = _actions[i].name || _actions[i].toString();
+      action = action.replace(/\s\s+/g,' ');
       str += `${route}\t\t${action}\n`;
-      data[route] = action;
+      data.push({route: route, action: action});
     }
-    let columns = columnify(data,{columns: ['ROUTE', 'ACTION']})
+    let columns = columnify(data, {
+      truncate: true,
+      minWidth: 20,
+      config: {
+        action: {maxWidth: 30},
+      },
+    });
     return columns;
   }
 
