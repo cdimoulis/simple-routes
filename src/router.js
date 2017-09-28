@@ -1,4 +1,5 @@
 const match = require('minimatch');
+const columnify = require('columnify');
 
 const Router = function(opts) {
   // Currently no options are used.
@@ -77,13 +78,15 @@ const Router = function(opts) {
   // Get a pretty listing of the routes
   this.toString = () => {
     let str = '';
+    let data = {};
     for (let i = 0; i < _routes.length; i++) {
       let route = _routes[i];
       let action = _actions[i].name || _actions[i].toString();
       str += `${route}\t\t${action}\n`;
+      data[route] = action;
     }
-
-    return str;
+    let columns = columnify(data,{columns: ['ROUTE', 'ACTION']})
+    return columns;
   }
 
   // Get all the routes
