@@ -1,4 +1,5 @@
-# Simple Routes: A simple route matcher
+# Simple Routes
+#### A simple route matcher
 
 Simple route matcher using minimatch.
 
