@@ -18,15 +18,15 @@ const Router = function(opts) {
         let route_len = _routes.push(route);
         let action_len = _actions.push(action);
         if (route_len != action_len) {
-          throw `Router Error: Mismatch routes and actions\nroute: ${route}\naction: ${action}`;
+          throw new Error(`Router Error: Mismatch routes and actions\nroute: ${route}\naction: ${action}`);
         }
       }
       else {
-        throw `Router Error: Action must be function for\nroute: ${route}\naction: ${action}`;
+        throw new Error(`Router Error: Action must be a function for\nroute: ${route}\naction: ${action}`);
       }
     }
     else {
-      throw `Router Error: Route must be a string for\nroute: ${route}\naction: ${action}`;
+      throw new Error(`Router Error: Route must be a string for\nroute: ${route}\naction: ${action}`);
     }
     // Allow chaining of addRoutes
     return this;

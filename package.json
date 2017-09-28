@@ -19,7 +19,7 @@
     "url": "https://github.com/cdimoulis/simple-routes.git"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "engines": {
     "node": ">= 6.11"

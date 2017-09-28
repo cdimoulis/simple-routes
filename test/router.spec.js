@@ -57,3 +57,28 @@ test('Remove route', () => {
 test('Has Route', () => {
   expect(router.hasRoute('/love')).toBeTruthy();
 });
+
+test('To String', () => {
+  expect(typeof router.toString()).toBe('string');
+});
+
+// EXCEPTIONS
+test('Bad Route', () => {
+  let f = () => {router.addRoute(3, action1)};
+  expect(f).toThrow(/Router Error: Route must be a string/);
+});
+
+test('Bad Action', () => {
+  let f = () => {router.addRoute('/edit',3)};
+  expect(f).toThrow(/Router Error: Action must be a function/);
+});
+
+test('Missmatch routes-actions', () => {
+  let f = () => {
+    router.addRoutes([
+      ['/test',action1],
+      ['/peace']
+    ]);
+  };
+  expect(f).toThrow();
+});
