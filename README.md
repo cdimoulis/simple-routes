@@ -2,7 +2,11 @@
 
 Simple route matcher using minimatch.
 
-[![Build Status](https://travis-ci.org/cdimoulis/simple-routes.svg?branch=master)](http://travis-ci.org/cdimoulis/simple-routes)
+
+[![npm][npm]][npm-url]
+[![node][node]][node-url]
+[![deps][deps]][deps-url]
+[![tests][tests]][tests-url]
 
 ### Installation
 
@@ -52,3 +56,16 @@ View a neater layout of the routes.
 ```js
 router.toString();
 ```
+
+
+[npm]: https://img.shields.io/npm/v/simple-routes.svg
+[npm-url]: https://npmjs.com/package/simple-routes
+
+[node]: https://img.shields.io/node/v/simple-routes.svg
+[node-url]: https://nodejs.orgx
+
+[deps]: https://img.shields.io/david/cdimoulis/simple-routes.svg
+[deps-url]: https://david-dm.org/cdimoulis/simple-routes
+
+[tests]: https://img.shields.io/travis/cdimoulis/simple-routes/master.svg
+[tests-url]: https://travis-ci.org/cdimoulis/simple-routes
