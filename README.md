@@ -2,7 +2,6 @@
 
 Simple route matcher using minimatch.
 
-
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
@@ -63,7 +62,7 @@ router.toString();
 [npm-url]: https://npmjs.com/package/simple-routes
 
 [node]: https://img.shields.io/node/v/simple-routes.svg
-[node-url]: https://nodejs.orgx
+[node-url]: https://nodejs.org
 
 [deps]: https://img.shields.io/david/cdimoulis/simple-routes.svg
 [deps-url]: https://david-dm.org/cdimoulis/simple-routes
