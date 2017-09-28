@@ -25,6 +25,7 @@
     "node": ">= 6.11"
   },
   "dependencies": {
+    "columnify": "^1.5.4",
     "minimatch": "^3.0.4"
   },
   "devDependencies": {
