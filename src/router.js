@@ -17,9 +17,6 @@ const Router = function(opts) {
       if (action && (typeof action) === 'function') {
         let route_len = _routes.push(route);
         let action_len = _actions.push(action);
-        if (route_len != action_len) {
-          throw new Error(`Router Error: Mismatch routes and actions\nroute: ${route}\naction: ${action}`);
-        }
       }
       else {
         throw new Error(`Router Error: Action must be a function for\nroute: ${route}\naction: ${action}`);
@@ -35,11 +32,13 @@ const Router = function(opts) {
   // Adds multiple routes and actions.
   // list: array of arrays. Each array is a pair of [route, action].
   this.addRoutes = (list) => {
-    if (list) {
-      for (let i = 0; i < list.length; i++) {
-        let obj = list[i];
+    if (list && Array.isArray(list)) {
+      list.forEach((obj) => {
         this.addRoute(obj[0], obj[1]);
-      }
+      });
+    }
+    else {
+      throw new Error(`Router Error: List must be an array\nList: ${list}`)
     }
     // Allow chaining of addRoutes
     return this;
