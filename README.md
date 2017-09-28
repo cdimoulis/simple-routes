@@ -6,6 +6,7 @@ Simple route matcher using minimatch.
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
+[![coverage][cover]][cover-url]
 
 ## Installation
 
@@ -118,3 +119,6 @@ router.clearAll();
 
 [tests]: https://img.shields.io/travis/cdimoulis/simple-routes/master.svg
 [tests-url]: https://travis-ci.org/cdimoulis/simple-routes
+
+[cover]: https://coveralls.io/repos/github/cdimoulis/simple-routes/badge.svg?branch=master
+[cover-url]: https://coveralls.io/github/cdimoulis/simple-routes?branch=master

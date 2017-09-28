@@ -2,9 +2,10 @@
 .nvmrc
 *.log
 
-# We do not commit node modules, builds and temp
-/node_modules
+# We do not commit node modules, builds, coverage and temp
 /build
+/coverage
+/node_modules
 /tmp
 
 # MACs come on
