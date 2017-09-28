@@ -1,5 +1,4 @@
 # Simple Routes
-#### A simple route matcher
 
 Simple route matcher using minimatch.
 
@@ -9,11 +8,11 @@ Simple route matcher using minimatch.
 [![deps][deps]][deps-url]
 [![tests][tests]][tests-url]
 
-### Installation
+## Installation
 
 `npm install simple-routes`
 
-### Usage
+## Usage
 
 Simply import and create router;
 
@@ -24,6 +23,7 @@ let router = new Router();
 ```
 
 **Add Routes**
+
 Adding routes is simply a string representing a url to match and an action which is a function.
 
 The url string should follow the [minimatch](https://www.npmjs.com/package/minimatch) documentation for matching.
