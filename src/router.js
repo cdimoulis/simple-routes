@@ -15,8 +15,12 @@ const Router = function(opts) {
   this.addRoute = (route, action) => {
     if (route && (typeof route) === 'string') {
       if (action && (typeof action) === 'function') {
-        let route_len = _routes.push(route);
-        let action_len = _actions.push(action);
+        // Detect any query strings and warn that they are ignored
+        let rq = route.split('?');
+        if (rq.length > 1)
+          console.warn('Query strings are ignored in route matching');
+        _routes.push(rq[0]);
+        _actions.push(action);
       }
       else {
         throw new Error(`Router Error: Action must be a function for\nroute: ${route}\naction: ${action}`);
@@ -47,14 +51,22 @@ const Router = function(opts) {
   // Show the action for the given route
   // Returns the function or -1 if not found
   this.getAction = (route) => {
-    let index = _findMatch(route);
+    // Separate potential query string
+    let rq = route.split('?');
+    if (rq.length > 1)
+      console.warn('Query strings are ignored in route matching');
+    // Index of path only
+    let index = _findMatch(rq[0]);
     return _actions[index] || -1;
   };
 
   // Remove a route
   // Returns the action or null if not found
   this.removeRoute = (route) => {
-    let action, index = _routes.indexOf(route);
+    // Separate potential query string
+    let rq = route.split('?');
+    // Index of path only
+    let action, index = _routes.indexOf(rq[0]);
     if (index != -1) {
       _routes.splice(index, 1);
       action = _actions.splice(index, 1);
@@ -70,7 +82,10 @@ const Router = function(opts) {
 
   // If has route
   this.hasRoute = (route) => {
-    var index = _routes.indexOf(route);
+    // Separate potential query string
+    let rq = route.split('?');
+    // Index of path only
+    var index = _routes.indexOf(rq[0]);
     return index != -1 ? true : false;
   }
 
