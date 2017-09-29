@@ -19,8 +19,8 @@
     "url": "https://github.com/cdimoulis/simple-routes.git"
   },
   "scripts": {
-    "test": "jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "test-dev": "jest --coverage"
+    "test": "jest --coverage",
+    "coverage": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "engines": {
     "node": ">= 6.11"
