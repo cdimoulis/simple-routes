@@ -7,10 +7,10 @@ let _routes = [];
 let _actions = [];
 
 class Router {
-  // Currently no options are used.
 
   constructor(opts) {
-    options = opts || {};
+    // Currently no options are used.
+    this.options = opts || {};
   }
 
   // Add a route to the routes
@@ -58,8 +58,6 @@ class Router {
   getAction(route) {
     // Separate potential query string
     let rq = route.split('?');
-    if (rq.length > 1)
-      console.warn('Query strings are ignored in route matching');
     // Index of path only
     let index = _findMatch(rq[0]);
     return _actions[index] || -1;
