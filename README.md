@@ -110,6 +110,19 @@ You can remove all routes:
 router.clearAll();
 ```
 
+## Extending Router
+
+You can extend the router using the class extend syntax available in node >6.11
+
+```js
+const SimpleRouter = require('simple-routes');
+
+class MyRouter extends SimpleRouter {
+  // override functions as you wish
+  ...
+};
+```
+
 
 [npm]: https://img.shields.io/npm/v/simple-routes.svg
 [npm-url]: https://npmjs.com/package/simple-routes
