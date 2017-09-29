@@ -1,10 +1,18 @@
 language: node_js
 
 node_js:
-  - stable
+  - "6"
+  - "lts/*"
+
+branches:
+  only:
+    - master
 
 install:
   - npm install
 
 script:
   - npm test
+
+after_success:
+  - npm run converage

@@ -59,6 +59,20 @@ test('Remove route', () => {
   expect(actions).not.toContain(action1);
 });
 
+test('Add route with query', () => {
+  router.addRoute('/query?a=1&b=2', action1);
+  // With no query
+  expect(router.hasRoute('/query')).toBeTruthy();
+  // With query
+  expect(router.hasRoute('/query?peace=love')).toBeTruthy();
+  expect(router.getAction('/query?children=3&parents=2')).toBe(action1);
+});
+
+test('Remove route with query', () => {
+  router.removeRoute('/query');
+  expect(router.hasRoute('/query')).toBeFalsy();
+});
+
 test('Has Route', () => {
   expect(router.hasRoute('/love')).toBeTruthy();
   expect(router.hasRoute('/not_found')).toBeFalsy();
