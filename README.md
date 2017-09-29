@@ -49,10 +49,13 @@ router.hasRoute('/index.html'); // true
 let action = router.getAction('/blog/articles/cheese'); // returns main_controller.articles
 ```
 
-
 **NOTE:**
 
 The order in which routes are added is important. In the example above you see the route `**` which would match ANY AND ALL routes. However since it is added last the first two routes will be checked first for a match.
+
+**QUERY STRINGS:**
+
+Query strings are ignored when adding a route (`addRoute(...)`) and calling `hasRoute(...)`, `getAction(...)`, and `removeRoute(...)`. Only the path will be considered in the match.
 
 #### View Routes
 
