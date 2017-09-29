@@ -1,18 +1,23 @@
 const match = require('minimatch');
 const columnify = require('columnify');
 
-const Router = function(opts) {
-  // Currently no options are used.
-  opts = opts || {};
+let options;
 
-  let _routes = [];
-  let _actions = [];
+let _routes = [];
+let _actions = [];
+
+class Router {
+  // Currently no options are used.
+
+  constructor(opts) {
+    options = opts || {};
+  }
 
   // Add a route to the routes
   // route: (string) the route to match. Uses minimatch for route matching
   // action: (function) the action (funtion callback) to perform. This function
   //         will be returned on a successful match.
-  this.addRoute = (route, action) => {
+  addRoute(route, action) {
     if (route && (typeof route) === 'string') {
       if (action && (typeof action) === 'function') {
         // Detect any query strings and warn that they are ignored
@@ -35,7 +40,7 @@ const Router = function(opts) {
 
   // Adds multiple routes and actions.
   // list: array of arrays. Each array is a pair of [route, action].
-  this.addRoutes = (list) => {
+  addRoutes(list) {
     if (list && Array.isArray(list)) {
       list.forEach((obj) => {
         this.addRoute(obj[0], obj[1]);
@@ -50,7 +55,7 @@ const Router = function(opts) {
 
   // Show the action for the given route
   // Returns the function or -1 if not found
-  this.getAction = (route) => {
+  getAction(route) {
     // Separate potential query string
     let rq = route.split('?');
     if (rq.length > 1)
@@ -62,7 +67,7 @@ const Router = function(opts) {
 
   // Remove a route
   // Returns the action or null if not found
-  this.removeRoute = (route) => {
+  removeRoute(route) {
     // Separate potential query string
     let rq = route.split('?');
     // Index of path only
@@ -75,13 +80,13 @@ const Router = function(opts) {
   };
 
   // Clear all routes
-  this.clearAll = () => {
+  clearAll() {
     _routes = [];
     _actions = [];
   }
 
   // If has route
-  this.hasRoute = (route) => {
+  hasRoute(route) {
     // Separate potential query string
     let rq = route.split('?');
     // Index of path only
@@ -90,7 +95,7 @@ const Router = function(opts) {
   }
 
   // Get a pretty listing of the routes
-  this.toString = () => {
+  toString() {
     let str = '';
     let data = [];
     for (let i = 0; i < _routes.length; i++) {
@@ -111,32 +116,32 @@ const Router = function(opts) {
   }
 
   // Get all the routes
-  this.routes = () => {
+  routes() {
     return _routes;
   }
 
   // Get all the actions
-  this.actions = () => {
+  actions() {
     return _actions;
   }
+};
 
-  /***
-  * Private FUNCTIONS
-  ***/
 
-  // Returns the index of a match or null
-  let _findMatch = (route) => {
-    let index;
-    for (let i = 0; i < _routes.length; i++) {
-      let possible = _routes[i];
-      if (match(route, possible)) {
-        index = i;
-        break;
-      }
+/***
+* Private FUNCTIONS
+***/
+
+// Returns the index of a match or null
+let _findMatch = (route) => {
+  let index;
+  for (let i = 0; i < _routes.length; i++) {
+    let possible = _routes[i];
+    if (match(route, possible)) {
+      index = i;
+      break;
     }
-    return index;
   }
-
-}
+  return index;
+};
 
 module.exports = Router;
