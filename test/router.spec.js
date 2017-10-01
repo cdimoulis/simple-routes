@@ -29,20 +29,20 @@ test('Add routes', () => {
   f.x = () => {return 3;};
   router.addRoutes([
     ['/test', action1],
-    ['/love', action2],
+    ['/love/*', action2],
     ['/temp', f.x],
   ]);
   let routes = router.routes();
   let actions = router.actions();
   expect(routes.length).toBe(3);
   expect(actions.length).toBe(3);
-  expect(routes[1]).toBe('/love');
+  expect(routes[1]).toBe('/love/*');
   expect(actions[1]).toBe(action2);
 });
 
 test('Get Action', () => {
   expect(router.getAction('/test')).toBe(action1);
-  expect(router.getAction('/love')).toBe(action2);
+  expect(router.getAction('/love/food')).toBe(action2);
   expect(router.getAction('/not_found')).toBe(-1);
 });
 
@@ -74,8 +74,12 @@ test('Remove route with query', () => {
 });
 
 test('Has Route', () => {
-  expect(router.hasRoute('/love')).toBeTruthy();
+  expect(router.hasRoute('/love/*')).toBeTruthy();
   expect(router.hasRoute('/not_found')).toBeFalsy();
+});
+
+test('Get Route Match', () => {
+  expect(router.getRouteMatch('/love/family')).toBe('/love/*')
 });
 
 test('To String', () => {

@@ -63,6 +63,14 @@ class Router {
     return _actions[index] || -1;
   };
 
+  getRouteMatch(route) {
+    // Separate potential query string
+    let rq = route.split('?');
+    // Index of path only
+    let index = _findMatch(rq[0]);
+    return _routes[index] || -1;
+  };
+
   // Remove a route
   // Returns the action or null if not found
   removeRoute(route) {
