@@ -43,7 +43,20 @@ test('Add routes', () => {
 test('Get Action', () => {
   expect(router.getAction('/test')).toBe(action1);
   expect(router.getAction('/love/food')).toBe(action2);
-  expect(router.getAction('/not_found')).toBe(-1);
+  expect(router.getAction('/not_found')).toBeUndefined();
+});
+
+test('Get Route Match', () => {
+  router.addRoutes([
+    ['/a/b/*/c', action1],
+    ['/*/b/*/c', action1]
+  ]);
+  expect(router.getRouteMatch('/a/b/z/c')).toBe('/a/b/*/c');
+  expect(router.getRouteMatch('/x/b/z/c')).toBe('/*/b/*/c');
+  expect(router.getRouteMatch('/love/q')).toBe('/love/*');
+  expect(router.getRouteMatch('/a/b/z/c/d')).toBeUndefined();
+  router.removeRoute('/a/b/*/c');
+  router.removeRoute('/*/b/*/c');
 });
 
 test('Remove route', () => {
