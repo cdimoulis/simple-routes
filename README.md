@@ -2,7 +2,7 @@
 
 Simple route matcher using minimatch.
 
-[Changelog](https://github.com/cdimoulis/simple-routes/blob/master/README.md)
+[Changelog](https://github.com/cdimoulis/simple-routes/blob/master/changelog.md)
 
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
