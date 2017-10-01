@@ -2,6 +2,8 @@
 
 Simple route matcher using minimatch.
 
+[Changelog](https://github.com/cdimoulis/simple-routes/blob/master/changelog.md)
+
 [![npm][npm]][npm-url]
 [![node][node]][node-url]
 [![deps][deps]][deps-url]
@@ -46,7 +48,7 @@ router.addRoutes([
 
 router.hasRoute('/index.html'); // true
 
-let action = router.getAction('/blog/articles/cheese'); // returns main_controller.articles
+let action = router.getAction('/blog/articles/cheese'); // returns main_controller.articles, undefined if not found
 ```
 
 **NOTE:**
@@ -67,6 +69,16 @@ router.routes();
 You can get an array of all the actions currently in the router:
 ```js
 router.actions();
+```
+
+Get the action if the passed route string matches a pattern. Undefined if not found:
+```js
+router.getAction('/...');
+```
+
+Get the route pattern that the passed route string matches. Undefined if not found:
+```js
+router.getRouteMatch('/...');
 ```
 
 View a neater layout of the current routes in the router. If the function passed is a named function statement the function name will show. Otherwise the function will print.
