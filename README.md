@@ -51,10 +51,6 @@ routes.hasRoute('/index.html'); // true
 let action = routes.getAction('/blog/articles/cheese'); // returns main_controller.articles, undefined if not found
 ```
 
-**Errors**
-
-
-
 **NOTE:**
 
 The order in which route patterns are added is important. In the example above you see the route `**` which would match ANY AND ALL routes. However since it is added last the first two routes will be checked first for a match.
@@ -140,6 +136,17 @@ class MyRoutes extends SimpleRoutes {
   ...
 };
 ```
+
+#### Errors
+
+The following are functions and conditions that will throw errors:
+
+* `addRoute(route, action)`
+  * `route` does not exist or is not a type string.
+  * `action` does not exist or is not a function.
+
+* `addRoutes(list)`
+  * `list` does not exist or is not an array.
 
 
 [npm]: https://img.shields.io/npm/v/simple-routes.svg
