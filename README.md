@@ -1,6 +1,6 @@
 # Simple Routes
 
-Simple route matcher using minimatch.
+A simple route pattern matcher and action associator.
 
 [Changelog](https://github.com/cdimoulis/simple-routes/blob/master/changelog.md)
 
@@ -16,44 +16,46 @@ Simple route matcher using minimatch.
 
 ## Usage
 
-Simply import and create router;
+Simply import and create routes;
 
 ```js
-let Router = require('simple-routes');
+let Routes = require('simple-routes');
 
-let router = new Router();
+let routes = new Routes();
 ```
 
 #### Add Routes
 
-Adding routes is simply a string representing a url to match and an action which is a function.
+Add route patterns by using a string representing a url to match and an action that should match that pattern.
 
-The url string should follow the [minimatch](https://www.npmjs.com/package/minimatch) documentation for matching.
+The url string (route pattern) should follow the [minimatch](https://www.npmjs.com/package/minimatch) documentation for matching.
 
-Routes are added using an array like `['/url/route/*/to/match', action]`
+Route patternss are added using an array like `['/url/route/*/to/match', action]`
 
-Action is a function callback. This function will be returned on a successful match
+Action is a function callback. This function will be returned on a successful match.
 
 ```js
 let main_controller = require('./controllers/main');
 
 // route, action
-router.addRoute('/index.html', main_controller.index);
+routes.addRoute('/index.html', main_controller.index);
 
 // [route,action], [route,action]
-router.addRoutes([
+routes.addRoutes([
   ['/blog/articles/*', main_controller.articles],
   ['**', main_controller.default]
 ]);
 
-router.hasRoute('/index.html'); // true
+routes.hasRoute('/index.html'); // true
 
-let action = router.getAction('/blog/articles/cheese'); // returns main_controller.articles, undefined if not found
+let action = routes.getAction('/blog/articles/cheese'); // returns main_controller.articles, undefined if not found
 ```
 
 **NOTE:**
 
-The order in which routes are added is important. In the example above you see the route `**` which would match ANY AND ALL routes. However since it is added last the first two routes will be checked first for a match.
+The order in which route patterns are added is important. In the example above you see the route `**` which would match ANY AND ALL routes. However since it is added last the first two routes will be checked first for a match.
+
+**Duplicate** route patterns will log a warning and be ignored (since they would never be reached anyway)
 
 **QUERY STRINGS:**
 
@@ -61,30 +63,30 @@ Query strings are ignored when adding a route (`addRoute(...)`) and calling `has
 
 #### View Routes
 
-You can get an array of all the routes currently in the router:
+You can get an array of all the route patterns currently in the routes:
 ```js
-router.routes();
+routes.routes();
 ```
 
-You can get an array of all the actions currently in the router:
+You can get an array of all the actions currently in the routes:
 ```js
-router.actions();
+routes.actions();
 ```
 
-Get the action if the passed route string matches a pattern. Undefined if not found:
+Get the action if the passed route string matches a route pattern. Undefined if not found:
 ```js
-router.getAction('/...');
+routes.getAction('/...');
 ```
 
 Get the route pattern that the passed route string matches. Undefined if not found:
 ```js
-router.getRouteMatch('/...');
+routes.getRouteMatch('/...');
 ```
 
-View a neater layout of the current routes in the router. If the function passed is a named function statement the function name will show. Otherwise the function will print.
+View a neater layout of the current route patterns in the router. If the function passed is a named function statement the function name will show. Otherwise the function will print.
 
 ```js
-router.toString();
+routes.toString();
 
 // ROUTE                ACTION              
 // /index.html          index                   
@@ -112,28 +114,39 @@ main_controller.create.name; // ''
 
 #### Remove Routes
 
-You can remove an individual route:
+You can remove an individual route pattern:
 ```js
-router.removeRoute('/blog/articles/**');
+routes.removeRoute('/blog/articles/**');
 ```
 
 You can remove all routes:
 ```js
-router.clearAll();
+routes.clearAll();
 ```
 
-## Extending Router
+## Extending Routes
 
-You can extend the router using the class extend syntax available in node >6.11
+You can extend the routes using the class extend syntax available in node >6.11
 
 ```js
-const SimpleRouter = require('simple-routes');
+const SimpleRoutes = require('simple-routes');
 
-class MyRouter extends SimpleRouter {
+class MyRoutes extends SimpleRoutes {
   // override functions as you wish
   ...
 };
 ```
+
+#### Errors
+
+The following are functions and conditions that will throw errors:
+
+* `addRoute(route, action)`
+  * `route` does not exist or is not a type string.
+  * `action` does not exist or is not a function.
+
+* `addRoutes(list)`
+  * `list` does not exist or is not an array.
 
 
 [npm]: https://img.shields.io/npm/v/simple-routes.svg

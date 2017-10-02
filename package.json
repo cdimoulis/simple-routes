@@ -1,10 +1,11 @@
 {
   "name": "simple-routes",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A simple route matcher",
   "keywords": [
     "router",
     "routes",
+    "match",
     "simple"
   ],
   "license": "MIT",
@@ -13,7 +14,7 @@
     "email": "christopherjamesd@gmail.com",
     "url": "http://chrisdimoulis.com"
   },
-  "main": "src/router.js",
+  "main": "src/routes.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/cdimoulis/simple-routes.git"
