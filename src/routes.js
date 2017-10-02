@@ -6,7 +6,7 @@ let options;
 let _routes = [];
 let _actions = [];
 
-class Router {
+class Routes {
 
   constructor(opts) {
     // Currently no options are used.
@@ -28,11 +28,11 @@ class Router {
         _actions.push(action);
       }
       else {
-        throw new Error(`Router Error: Action must be a function for\nroute: ${route}\naction: ${action}`);
+        throw new Error(`Routes Error: Action must be a function for\nroute: ${route}\naction: ${action}`);
       }
     }
     else {
-      throw new Error(`Router Error: Route must be a string for\nroute: ${route}\naction: ${action}`);
+      throw new Error(`Routes Error: Route must be a string for\nroute: ${route}\naction: ${action}`);
     }
     // Allow chaining of addRoutes
     return this;
@@ -47,7 +47,7 @@ class Router {
       });
     }
     else {
-      throw new Error(`Router Error: List must be an array\nList: ${list}`)
+      throw new Error(`Routes Error: List must be an array\nList: ${list}`)
     }
     // Allow chaining of addRoutes
     return this;
@@ -153,4 +153,4 @@ let _findMatch = (route) => {
   return index;
 };
 
-module.exports = Router;
+module.exports = Routes;

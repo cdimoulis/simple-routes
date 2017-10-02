@@ -1,25 +1,25 @@
-const Router = require('../src/router');
+const Routes = require('../src/routes');
 
-let router = new Router();
+let router = new Routes();
 let action1 = () => {return 1;};
 let action2 = () => {return 2;};
 
 test('Add route', () => {
   router.addRoute('/test', action1);
-  let routes = router.routes();
-  let actions = router.actions();
-  expect(routes.length).toBe(1);
-  expect(actions.length).toBe(1);
-  expect(routes).toContain('/test');
-  expect(actions).toContain(action1);
+  let _routes = router.routes();
+  let _actions = router.actions();
+  expect(_routes.length).toBe(1);
+  expect(_actions.length).toBe(1);
+  expect(_routes).toContain('/test');
+  expect(_actions).toContain(action1);
 });
 
 test('Clear all', () => {
   router.clearAll();
-  let routes = router.routes();
-  let actions = router.actions();
-  expect(routes.length).toBe(0);
-  expect(actions.length).toBe(0);
+  let _routes = router.routes();
+  let _actions = router.actions();
+  expect(_routes.length).toBe(0);
+  expect(_actions.length).toBe(0);
 });
 
 test('Add routes', () => {
@@ -32,12 +32,12 @@ test('Add routes', () => {
     ['/love/*', action2],
     ['/temp', f.x],
   ]);
-  let routes = router.routes();
-  let actions = router.actions();
-  expect(routes.length).toBe(3);
-  expect(actions.length).toBe(3);
-  expect(routes[1]).toBe('/love/*');
-  expect(actions[1]).toBe(action2);
+  let _routes = router.routes();
+  let _actions = router.actions();
+  expect(_routes.length).toBe(3);
+  expect(_actions.length).toBe(3);
+  expect(_routes[1]).toBe('/love/*');
+  expect(_actions[1]).toBe(action2);
 });
 
 test('Get Action', () => {
@@ -61,15 +61,15 @@ test('Get Route Match', () => {
 
 test('Remove route', () => {
   router.removeRoute('test');
-  let routes = router.routes();
-  expect(routes.length).toBe(3);
+  let _routes = router.routes();
+  expect(_routes.length).toBe(3);
   router.removeRoute('/test');
-  routes = router.routes();
-  let actions = router.actions();
-  expect(routes.length).toBe(2);
-  expect(actions.length).toBe(2);
-  expect(routes).not.toContain('/test');
-  expect(actions).not.toContain(action1);
+  _routes = router.routes();
+  let _actions = router.actions();
+  expect(_routes.length).toBe(2);
+  expect(_actions.length).toBe(2);
+  expect(_routes).not.toContain('/test');
+  expect(_actions).not.toContain(action1);
 });
 
 test('Add route with query', () => {
@@ -103,12 +103,12 @@ test('To String', () => {
 // EXCEPTIONS
 test('Bad Route', () => {
   let f = () => {router.addRoute(3, action1)};
-  expect(f).toThrow(/Router Error: Route must be a string/);
+  expect(f).toThrow(/Routes Error: Route must be a string/);
 });
 
 test('Bad Action', () => {
   let f = () => {router.addRoute('/edit',3)};
-  expect(f).toThrow(/Router Error: Action must be a function/);
+  expect(f).toThrow(/Routes Error: Action must be a function/);
 });
 
 test('Missmatch routes-actions', () => {
@@ -123,5 +123,5 @@ test('Missmatch routes-actions', () => {
 
 test('Invalid list', () => {
   let f = () => {router.addRoutes('/edit',action1)};
-  expect(f).toThrow(/Router Error: List must be an array/);
+  expect(f).toThrow(/Routes Error: List must be an array/);
 })
