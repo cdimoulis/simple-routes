@@ -11,6 +11,7 @@ class Routes {
   constructor(opts) {
     // Currently no options are used.
     this.options = opts || {};
+    return this;
   }
 
   // Add a route to the routes
@@ -24,8 +25,16 @@ class Routes {
         let rq = route.split('?');
         if (rq.length > 1)
           console.warn('Query strings are ignored in route matching');
-        _routes.push(rq[0]);
-        _actions.push(action);
+
+        // If route exists then warn and not add
+        // No need to add since it would be AFTER existing route pattern and
+        // never be reached.
+        if (this.hasRoute(route))
+          console.warn(`Already Exists: ${rq[0]} already has an action. Current action ignored`);
+        else {
+          _routes.push(rq[0]);
+          _actions.push(action);
+        }
       }
       else {
         throw new Error(`Routes Error: Action must be a function for\nroute: ${route}\naction: ${action}`);
