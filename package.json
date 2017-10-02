@@ -1,11 +1,11 @@
 {
   "name": "simple-routes",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A simple route matcher",
   "keywords": [
     "router",
     "routes",
-    "match", 
+    "match",
     "simple"
   ],
   "license": "MIT",
