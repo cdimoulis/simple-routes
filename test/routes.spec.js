@@ -15,7 +15,7 @@ test('Add route', () => {
 });
 
 test('Add duplicate route', () => {
-  routes.addRoute('/test', action2);
+  routes.addRoute('/test?b=4', action2);
   expect(routes.routes().length).toBe(1);
   expect(routes.actions().length).toBe(1);
   expect(routes.actions()[0]).toBe(action1);
@@ -88,14 +88,15 @@ test('Add route with query', () => {
   expect(routes.getAction('/query?children=3&parents=2')).toBe(action1);
 });
 
+test('Has Route (including query)', () => {
+  expect(routes.hasRoute('/love/*')).toBeTruthy();
+  expect(routes.hasRoute('/query?z=3&y=4')).toBeTruthy();
+  expect(routes.hasRoute('/not_found')).toBeFalsy();
+});
+
 test('Remove route with query', () => {
   routes.removeRoute('/query');
   expect(routes.hasRoute('/query')).toBeFalsy();
-});
-
-test('Has Route', () => {
-  expect(routes.hasRoute('/love/*')).toBeTruthy();
-  expect(routes.hasRoute('/not_found')).toBeFalsy();
 });
 
 test('Get Route Match', () => {

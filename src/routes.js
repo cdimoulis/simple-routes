@@ -29,7 +29,7 @@ class Routes {
         // If route exists then warn and not add
         // No need to add since it would be AFTER existing route pattern and
         // never be reached.
-        if (this.hasRoute(route))
+        if (this.hasRoute(rq[0]))
           console.warn(`Already Exists: ${rq[0]} already has an action. Current action ignored`);
         else {
           _routes.push(rq[0]);
@@ -72,8 +72,7 @@ class Routes {
     return _actions[index];
   };
 
-  // Get the route patter that is matched
-
+  // Get the route pattern that is matched
   // Returns null if not found
   getRouteMatch(route) {
     // Separate potential query string
@@ -101,16 +100,16 @@ class Routes {
   clearAll() {
     _routes = [];
     _actions = [];
-  }
+  };
 
-  // If has route
+  // If has route pattern
   hasRoute(route) {
     // Separate potential query string
     let rq = route.split('?');
     // Index of path only
     var index = _routes.indexOf(rq[0]);
     return index != -1 ? true : false;
-  }
+  };
 
   // Get a pretty listing of the routes
   toString() {
@@ -131,17 +130,17 @@ class Routes {
       },
     });
     return columns;
-  }
+  };
 
   // Get all the routes
   routes() {
     return _routes;
-  }
+  };
 
   // Get all the actions
   actions() {
     return _actions;
-  }
+  };
 };
 
 

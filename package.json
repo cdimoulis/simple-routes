@@ -1,7 +1,7 @@
 {
   "name": "simple-routes",
   "version": "0.2.2",
-  "description": "A simple route matcher",
+  "description": "A simple route pattern matcher and action associator",
   "keywords": [
     "router",
     "routes",

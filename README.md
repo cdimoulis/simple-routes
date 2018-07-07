@@ -26,11 +26,11 @@ let routes = new Routes();
 
 #### Add Routes
 
-Add route patterns by using a string representing a url to match and an action that should match that pattern.
+Add route patterns by using a string representing a url to match and an action that will return if matched.
 
 The url string (route pattern) should follow the [minimatch](https://www.npmjs.com/package/minimatch) documentation for matching.
 
-Route patternss are added using an array like `['/url/route/*/to/match', action]`
+Route patterns are use a string like `['/url/route/*/to/match', action]`
 
 Action is a function callback. This function will be returned on a successful match.
 
@@ -90,7 +90,7 @@ routes.toString();
 
 // ROUTE                ACTION              
 // /index.html          index                   
-// /blog/article/*      articles                   
+// /blog/articles/*      articles                   
 // **                   default      
 ```
 
@@ -116,7 +116,7 @@ main_controller.create.name; // ''
 
 You can remove an individual route pattern:
 ```js
-routes.removeRoute('/blog/articles/**');
+routes.removeRoute('/blog/articles/*');
 ```
 
 You can remove all routes:
